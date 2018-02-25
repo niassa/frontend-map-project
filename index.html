@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/style.min.css">
+	<title>Denver Metro Area Bookstores</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="header">
+			<h1>Denver Metro Area Bookstores</h1>
+		</div>
+		<div class="navigation"> <!-- Navigation -->
+			<!-- Regular Nav -->
+			<div class="topnav" id="myTopnav">
+				<a href="#" id="All" data-bind="click: filterButton.bind($data,'All')">All</a>
+				<a href="#" id="Children" data-bind="click: filterButton.bind($data,'Children')">Children's</a>
+				<a href="#" id="Independent" data-bind="click: filterButton.bind($data,'Independent')">Independent</a>
+				<a href="#" id="Spiritual" data-bind="click: filterButton.bind($data,'Spiritual')">Spiritual/Religious</a>
+				<a href="#" id="Traditional" data-bind="click: filterButton.bind($data,'Traditional')">Traditional</a>
+				<a href="#" id="University" data-bind="click: filterButton.bind($data,'University')">University</a>
+				<a href="#" id="Used" data-bind="click: filterButton.bind($data,'Used')">Used</a>
+			</div><!-- /Regular Nav -->
+
+			<!-- I originally had this as one navigation menu, but when I couldn't make the knockout work properly, I found it easier (for now) to make two. Eventually, I will go back to a single nav, but I'm out of time. -->
+			
+			<!-- Mobile Nav -->
+			<div class="mobile-nav" id="myMobileNav">
+				<a id="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776; Menu</a>
+				<a href="#" data-bind="click: filterButton.bind($data,'All')">All</a>
+				<a href="#" id="children" data-bind="click: filterButton.bind($data,'Children')">Children's</a>
+				<a href="#" data-bind="click: filterButton.bind($data,'Independent')">Independent</a>
+				<a href="#" data-bind="click: filterButton.bind($data,'Spiritual')">Spiritual/Religious</a>
+				<a href="#" data-bind="click: filterButton.bind($data,'Traditional')">Traditional</a>
+				<a href="#" data-bind="click: filterButton.bind($data,'University')">University</a>
+				<a href="#" data-bind="click: filterButton.bind($data,'Used')">Used</a>
+			</div> <!-- /Mobile Nav -->
+		</div> <!-- /Navigation -->
+
+
+		<div class="content"> <!-- content -->
+			<div id="leftCol"> <!-- leftCol -->
+				<div>
+					<p><strong>Select from the options below:</strong></p>
+				</div>
+				<form class="">
+					<input type="text" placeholder="Search for a Bookstore" data-bind="textInput: userInput, event: { keyup: filterBookstores }">
+
+					<button type="reset" class="btn" data-bind="click: clearFilter">Clear Filter
+					</button>
+				</form>
+				<ul class="" data-bind="foreach: visibleBS">
+					<li><a href="#" data-bind="text: name, click: $parent.showBsInfo"></a></li>
+				</ul>
+			</div> <!-- /leftCol -->
+
+			<div id="rightCol"> <!-- rightCol -->
+					<div id="map"></div>
+			</div> <!-- /rightCol -->
+		</div> <!-- /content -->
+
+		
+	</div>
+	<div class="footer">
+			© Michelle Kellogg 2018
+		</div>
+	<script>
+		function myFunction() {
+			var x = document.getElementById("myMobileNav");
+			if (x.className === "mobile-nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "mobile-nav";
+			}
+		}
+	</script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+	<script src="js/bookstores.js"></script>
+	<script src="js/myApp.min.js"></script>
+	<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-Dviv1NRrCTrwrYKCX8oRFlsFHtHZGPo&callback=initMap" onerror="googleAPIError()"></script>
+</body>
+
+</html>
